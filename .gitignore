@@ -1,0 +1,9 @@
+# Python Virtual Environment
+.venv/
+
+# Bytecode files
+*.pyc
+
+# Cấu hình PyCharm và file tạm
+.idea/
+__pycache__/
