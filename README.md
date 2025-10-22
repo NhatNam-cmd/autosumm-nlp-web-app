@@ -96,6 +96,17 @@ Nhóm áp dụng các nguyên tắc từ phương pháp **Agile** với quy trì
 
 ---
 
+## 🧠 Thuật toán Tóm tắt (NLTK Extractive Summarization)
+
+Thuật toán sử dụng thư viện NLTK để thực hiện tóm tắt trích xuất (extractive summarization) dựa trên tần suất từ vựng. Văn bản được tiền xử lý thông qua các bước tách câu, tách từ, loại bỏ dấu câu và stopwords, sau đó chấm điểm từng câu để chọn ra những câu quan trọng nhất.
+
+Input: Văn bản đầu vào do người dùng nhập, giới hạn tối đa 600 ký tự.
+
+Output: Kết quả tóm tắt gồm khoảng 10 câu quan trọng nhất được chọn lọc tự động từ nội dung gốc.
+
+
+---
+
 ## 👥 Thành viên Nhóm & Vai trò "Lead"
 
 Dự án áp dụng mô hình "**Lead**" để đảm bảo sở hữu chung về kiến thức, mỗi Lead chịu trách nhiệm chính về một lĩnh vực nhưng đồng thời hướng dẫn và chia sẻ kiến thức với các thành viên khác.
