@@ -81,6 +81,79 @@ Xuất sang Trang tính
 
 ---
 
+## 🤝 Hợp đồng API & Validation
+
+Tài liệu này định nghĩa cách Frontend và Backend giao tiếp với nhau thông qua API, và cách Backend đảm bảo tính toàn vẹn của dữ liệu bằng thư viện Pydantic.
+
+### 1. Hợp đồng API (API Contract) 🤝
+
+Hợp đồng này là quy tắc bất biến, cho phép hai đội có thể phát triển song song.
+
+#### Endpoint
+- **URL:** `/api/v1/summarize`
+- **Method:** `POST`
+- **Header:** `Content-Type: application/json`
+
+#### Request Body (Dữ liệu gửi lên)
+Frontend phải gửi một đối tượng JSON với cấu trúc sau:
+
+```json
+{
+    "text": "Đây là văn bản mà người dùng muốn tóm tắt...",
+    "max_sentences": 3
+}
+```
+
+- **`text`** (string): Bắt buộc. Nội dung văn bản cần tóm tắt.
+- **`max_sentences`** (integer): Tùy chọn. Số câu tối đa mong muốn trong bản tóm tắt.
+
+#### Success Response (Phản hồi thành công - 200 OK)
+Khi xử lý thành công, backend sẽ trả về một đối tượng JSON chứa kết quả tóm tắt:
+
+```json
+{
+    "summary": "Đây là bản tóm tắt được tạo ra.",
+    "meta": {
+        "original_length": 1200,
+        "summary_length": 150,
+        "sentences": 3
+    }
+}
+```
+
+- **`summary`** (string): Nội dung văn bản đã được tóm tắt.
+- **`meta`** (object): Đối tượng chứa các thông tin bổ sung về quá trình xử lý.
+
+#### Error Response (Phản hồi lỗi)
+Khi có lỗi xảy ra (ví dụ: dữ liệu không hợp lệ), backend sẽ trả về một đối tượng JSON theo cấu trúc tiêu chuẩn:
+
+```json
+{
+    "error": {
+        "code": "invalid_input",
+        "message": "text is required and must be a non-empty string"
+    }
+}
+```
+
+- **`error`** (object): Một đối tượng chứa mã lỗi (code) và thông điệp lỗi (message) thân thiện.
+
+### 2. Validation Dữ liệu Đầu vào với Pydantic ⚖️
+
+Để đảm bảo backend chỉ xử lý dữ liệu hợp lệ, dự án sử dụng Pydantic để kiểm tra và xác thực (validation) mọi request gửi đến.
+
+#### Mục đích
+- **Thực thi Hợp đồng API:** Pydantic giúp backend tự động kiểm tra xem Request Body có tuân thủ đúng cấu trúc đã định nghĩa trong hợp đồng hay không (ví dụ: `text` phải là string và không được rỗng).
+- **Chuẩn hóa Lỗi:** Khi validation thất bại, Pydantic sẽ tạo ra một lỗi. Backend sẽ bắt lỗi này và trả về một Error Response JSON theo đúng định dạng đã thống nhất ở trên.
+
+#### Luồng xử lý
+1. Frontend gửi một request `POST` đến `/api/v1/summarize`.
+2. Tại backend (trong file `summarize.py`), dữ liệu JSON từ request sẽ được đưa vào một model của Pydantic để kiểm tra.
+3. **Nếu dữ liệu hợp lệ:** Quá trình xử lý tóm tắt tiếp tục.
+4. **Nếu dữ liệu không hợp lệ:** Pydantic sẽ báo lỗi. Backend sẽ ngay lập tức trả về một response lỗi với mã trạng thái `422 Unprocessable Entity` và nội dung JSON mô tả lỗi, thay vì tiếp tục xử lý.
+
+---
+
 ## ⚙️ Quy trình Làm việc & Chất lượng
 
 Nhóm áp dụng các nguyên tắc từ phương pháp **Agile** với quy trình làm việc được định nghĩa nghiêm ngặt:
@@ -164,3 +237,7 @@ Một nhiệm vụ hoặc toàn bộ dự án chỉ được coi là "**Hoàn th
 - [Tài liệu Black Code Formatter](https://black.readthedocs.io/en/stable/getting_started.html)
     
 - [Tài liệu Flake8 Linter](https://flake8.pycqa.org/)
+
+
+
+
