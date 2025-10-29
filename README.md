@@ -17,26 +17,26 @@ Toàn bộ ứng dụng được thiết kế và phát triển trong khung th�
 Phạm vi cốt lõi của dự án tập trung vào việc hoàn thành một Sản phẩm Khả dụng Tối thiểu (**MVP**) hoạt động ổn định:
 
 - **Giao diện Người dùng Tối giản:** Một giao diện web đơn trang với vùng nhập liệu (`<textarea>`) và khu vực hiển thị kết quả.
-    
+
 - **Tóm tắt Trích xuất:** Triển khai thuật toán **tóm tắt trích xuất (extractive summarization)** cơ bản nhưng hiệu quả, sử dụng thư viện **NLTK** để chấm điểm câu dựa trên tần suất từ và chọn ra những câu quan trọng nhất.
-    
+
 - **Backend API:** Một điểm cuối (endpoint) API đơn giản, sử dụng phương thức `POST` để nhận văn bản thô và trả về văn bản đã được tóm tắt dưới dạng **JSON**.
-    
+
 - **Triển khai Công khai:** MVP được triển khai thành công trên một nền tảng lưu trữ miễn phí (PythonAnywhere/Render) và có thể truy cập công khai thông qua URL.
-    
+
 
 ### 🚀 Mục tiêu Mở rộng (Stretch Goals)
 
 Các tính năng nâng cao, sẽ được xem xét và thực hiện sau khi MVP đã hoàn thành và triển khai thành công:
 
 - **Tùy chỉnh Độ dài:** Thêm tùy chọn cho phép người dùng kiểm soát độ dài của bản tóm tắt (số câu hoặc tỷ lệ phần trăm).
-    
+
 - **Tóm tắt từ URL:** Cho phép người dùng nhập một URL để hệ thống tự động lấy nội dung bài báo và thực hiện tóm tắt.
-    
+
 - **Mô hình Tiên tiến:** Nghiên cứu và tích hợp các mô hình **Transformer** (ví dụ: PEGASUS) từ Hugging Face để thực hiện **tóm tắt trừu tượng (abstractive summarization)**.
-    
+
 - **Tài khoản & Lịch sử:** Triển khai chức năng đăng ký/đăng nhập để người dùng có thể lưu lại lịch sử các lần tóm tắt.
-    
+
 
 ---
 
@@ -45,23 +45,23 @@ Các tính năng nâng cao, sẽ được xem xét và thực hiện sau khi MVP
 Dự án áp dụng mô hình **Kiến trúc Ba Tầng (Three-Tier Architecture)** để đảm bảo tính module, khả năng bảo trì và mở rộng.
 
 1. **Tầng Trình bày (Presentation Tier):**
-    
+
     - **Mục đích:** Giao diện người dùng.
-        
+
     - **Công nghệ:** HTML5, CSS3, JavaScript thuần.
-        
+
 2. **Tầng Logic (Logic Tier):**
-    
+
     - **Mục đích:** Bộ não của ứng dụng, xử lý yêu cầu HTTP, xác thực dữ liệu.
-        
+
     - **Công nghệ:** Framework **Flask** (Python).
-        
+
 3. **Tầng Dịch vụ (NLP Service Tier):**
-    
+
     - **Mục đích:** Module Python riêng biệt chứa toàn bộ logic cốt lõi của việc tóm tắt văn bản.
-        
+
     - **Công nghệ:** **NLTK** (MVP).
-        
+
 
 ---
 
@@ -157,13 +157,13 @@ Khi có lỗi xảy ra (ví dụ: dữ liệu không hợp lệ), backend sẽ t
 Nhóm áp dụng các nguyên tắc từ phương pháp **Agile** với quy trình làm việc được định nghĩa nghiêm ngặt:
 
 - **Quy trình Feature Branching:** Mọi tính năng mới đều được phát triển trên một nhánh riêng biệt (`feature/...`) và hợp nhất vào nhánh `main` thông qua Pull Request (PR).
-    
+
 - **API-First Bắt buộc:** Hợp đồng API (`/api/v1/summarize`) được định nghĩa và thống nhất trước khi triển khai full-stack để cho phép phát triển song song và giảm thiểu rủi ro tích hợp.
-    
+
 - **Đánh giá Mã nguồn (Code Review):** Mọi PR phải được **ít nhất hai thành viên khác** trong nhóm xem xét và phê duyệt trước khi hợp nhất.
-    
+
 - **Tự động hóa Chất lượng:** Sử dụng **`pre-commit hooks`** để tự động chạy `black` và `flake8` trước khi commit, đảm bảo mã nguồn luôn tuân thủ tiêu chuẩn chất lượng cao.
-    
+
 
 ---
 
@@ -205,15 +205,15 @@ Dự án áp dụng mô hình "**Lead**" để đảm bảo sở hữu chung v�
 Một nhiệm vụ hoặc toàn bộ dự án chỉ được coi là "**Hoàn thành**" khi đáp ứng tất cả các tiêu chí sau:
 
 1. **MVP được triển khai thành công** trên PythonAnywhere hoặc Render và hoạt động đầy đủ, có thể truy cập công khai.
-    
+
 2. Toàn bộ mã nguồn được lưu trữ trong kho chứa **GitHub** chung.
-    
+
 3. Mã nguồn vượt qua tất cả các kiểm tra của `flake8` (linter) và `black` (formatter) một cách tự động thông qua `pre-commit hooks`.
-    
+
 4. Mỗi thành viên trong nhóm đã tự mình tạo, gửi và hợp nhất thành công ít nhất một nhánh tính năng (feature branch) thông qua quy trình **Pull Request**.
-    
+
 5. Các chức năng cốt lõi được ghi lại bằng các bình luận, docstrings và một tệp **`README.md`** toàn diện.
-    
+
 6. Nhóm đã chuẩn bị và sẵn sàng cho bài thuyết trình cuối kỳ, bao gồm cả việc **demo trực tiếp** ứng dụng đang hoạt động.
 
 ---
@@ -221,15 +221,15 @@ Một nhiệm vụ hoặc toàn bộ dự án chỉ được coi là "**Hoàn th
 **Tài liệu tham khảo chính:**
 
 - [The Flask Mega-Tutorial](https://courses.miguelgrinberg.com/p/flask-mega-tutorial)
-    
+
 - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn_web_development)
-    
+
 - [Learn Git Branching (Bắt buộc Tuần 1)](https://learngitbranching.js.org/?locale=en_EN)
-    
+
 - [Tài liệu NLTK](https://www.geeksforgeeks.org/nlp/text-summarization-in-nlp/)
-    
+
 - [Tài liệu Black Code Formatter](https://black.readthedocs.io/en/stable/getting_started.html)
-    
+
 - [Tài liệu Flake8 Linter](https://flake8.pycqa.org/)
 
 
