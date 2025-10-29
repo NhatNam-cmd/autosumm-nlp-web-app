@@ -77,8 +77,6 @@ Dự án áp dụng mô hình **Kiến trúc Ba Tầng (Three-Tier Architecture)
 |**Chất lượng Mã nguồn**|`Black` (Formatter) & `Flake8` (Linter)|Tự động thực thi phong cách viết mã chuyên nghiệp và nhất quán.|
 |**Triển khai**|`PythonAnywhere / Render`|Các gói dịch vụ miễn phí phù hợp cho dự án sinh viên.|
 
-Xuất sang Trang tính
-
 ---
 
 ## 🤝 Hợp đồng API & Validation
@@ -191,8 +189,6 @@ Dự án áp dụng mô hình "**Lead**" để đảm bảo sở hữu chung v�
 |**Frontend & UI/UX Lead**|Cấu trúc HTML, tạo kiểu bằng CSS, và logic JavaScript để tương tác với API.|
 |**DevOps & QA Lead**|Thiết lập kho chứa GitHub, quản lý triển khai, cấu hình công cụ chất lượng mã nguồn (`black`, `flake8`).|
 
-Xuất sang Trang tính
-
 ### Danh sách Thành viên
 
 | Tên                  | GitHub Username | Vai trò Chính         |
@@ -201,8 +197,6 @@ Xuất sang Trang tính
 | **Nguyễn Minh Hưng** | `[username_2]`  | NLP & Core Logic Lead |
 | **Liêu Minh Khoa**   | `[username_3]`  | Frontend & UI/UX Lead |
 | **Phan Lê Nhật Nam** | `NhatNam-cmd`   | DevOps & QA Lead      |
-
-Xuất sang Trang tính
 
 ---
 
